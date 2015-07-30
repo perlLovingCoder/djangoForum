@@ -1,0 +1,63 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/slate/bootstrap.min.css" rel="stylesheet">
+<!-- Display the full original post -->
+<div class="well bs-component ">
+	<div class ="panel panel-default">
+		<div class="panel-heading">
+			<span class="lead">{{thread.title}}</span><br ?>
+			{{thread.username}}
+		</div>
+		<div class="panel-body">
+			<span class="lead">{{thread.description}}</span>
+		</div>
+	</div>
+
+<!--Iterate through the collection of comments related to this thread -->
+{% if relatedComments %}
+    {% for comment in relatedComments %}
+			<div class ="panel panel-default">
+				<div class="panel-heading">
+					{{comment.username}} wrote
+				</div>
+				<div class="panel-body">
+					{{comment.text}}
+				</div>
+				<div class="panel-footer">
+					<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></a>
+					<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></a>
+					<span class=""><b>Comment Score: {{comment.score}} &nbsp</b></span>
+				</div>
+			</div>
+	{% endfor %}
+{% else %}
+    <p>No comments have been posted yet. Be the first to respond!</p>
+{% endif %}
+</div>
+
+<!--New Comment Form -->
+
+<div class="well well-lg bs-component">
+<form class="form-horizontal" action="/forum/{{thread.id}}/comment/" method="get">
+{% csrf_token %}
+  <fieldset>
+    <legend>Add Comment</legend>
+    <div class="form-group">
+      <label for="username" class="col-lg-2 control-label">Username</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="username" placeholder="Username">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="textArea" class="col-lg-2 control-label">Comment</label>
+      <div class="col-lg-10">
+        <textarea class="form-control" rows="3" id="textArea"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="reset" class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+</div>

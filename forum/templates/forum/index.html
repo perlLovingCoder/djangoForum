@@ -1,0 +1,33 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/slate/bootstrap.min.css" rel="stylesheet">
+
+<!--Iterate through all threads and display in order of most recently updated-->
+{% if latestThreads %}
+	<span class="text-warning">
+		<h1>
+			&nbsp
+			Buzz Forum
+		</h1>
+		<h4>
+			<i>&nbsp&nbsp&nbsp&nbsp "Feed the buzz"</i>
+		</h4>
+	</span>
+    
+	<div class="well bs-component">
+	<table class="table table-striped table-hover">
+		<th><h2>Latest Threads</h2></th>
+    {% for thread in latestThreads %}
+        <a href="/forum/{{ thread.id }}/">
+		<tr>
+			<td>
+				<a href="/forum/{{ thread.id }}/"><h4>{{ thread.title }}</h4></a>
+				<i>{{thread.username}}</i>
+				<br />
+			</td>
+		</tr>
+		</a>
+    {% endfor %}
+    </table>
+	</div>
+{% else %}
+    <p>No threads have been created yet. Be the first to post!</p>
+{% endif %}
