@@ -1,2 +1,4 @@
 # djangoForum
-Attempt at implementing a bare-bones forum in Django.
+My attempt at implementing a bare-bones forum in Django. Chose Django as a framework for this local MVC product since it seemed like the easiest to set up on my local machine (several other frameworks were taking many hours). I was unable to get form input working, I may be misunderstanding the methodology behind the Django form class (I have not used Django before). Otherwise the application should run simply by starting up the Django server (python manage.py runserver) and navigating to the /forum application. The model is built against SQLite, and the sqlite file is included in repo, along with my migrations.
+
+The application has two basic views, the index view shows a list of threads and the threadDetail view shows a given thread and its related comments. The comment input form is styled but currently does not function. The entire application has been styled with Bootstrap, linked dynamically from the Bootstrap CDN.
